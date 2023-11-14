@@ -15,14 +15,14 @@ export default function useFetchData(endpoint) {
 
   useEffect(() => {
     let fetchCancelled = false;
-    // Resets and errors on subsequent calls
+    // Resets
     setError(null);
     setLoading(true);
     const fetchApiData = async () => {
       try {
         if (!fetchCancelled) {
-          const res = await fetch(`${API_BASE_URL}${endpoint}`);
-          const responseJson = await res.json();
+          const response = await fetch(`${API_BASE_URL}${endpoint}`);
+          const responseJson = await response.json();
           setData(responseJson);
         }
       } catch (err) {

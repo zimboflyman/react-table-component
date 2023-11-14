@@ -1,59 +1,31 @@
-export default function InvoiceTable({ invoiceData }) {
+export default function InvoiceTable({ headers, invoiceData }) {
   return (
     <div>
       <table>
         <thead>
           <tr>
-            <th>#</th>
-            <th>Ref</th>
-            <th>Currency</th>
-            <th>Date</th>
-            <th>Value</th>
-            <th>Balance</th>
-            <th>Due</th>
-            <th>Closed</th>
+            {headers.map((header, index) => (
+              <th key={index}>
+                <p>{header}</p>
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {invoiceData.map(
-            ({
-              id,
-              UniqueReference,
-              CurrencyCode,
-              IssueDate,
-              OpeningValue,
-              RemainingBalance,
-              DueDate,
-              ClosedDate,
-            }) => (
-              <tr key={UniqueReference}>
-                <td>
-                  <p>{id}</p>
-                </td>
-                <td>
-                  <p>{UniqueReference}</p>
-                </td>
-                <td>
-                  <p>{CurrencyCode}</p>
-                </td>
-                <td>
-                  <p>{IssueDate}</p>
-                </td>
-                <td>
-                  <p>{OpeningValue}</p>
-                </td>
-                <td>
-                  <p>{RemainingBalance}</p>
-                </td>
-                <td>
-                  <p>{DueDate}</p>
-                </td>
-                <td>
-                  <p>{ClosedDate}</p>
-                </td>
+          {invoiceData.map((row) => {
+            return (
+              <tr key={row.Id}>
+                {Object.values(headers).map((header, index) => {
+                  let temp = row[header];
+                  return (
+                    <td key={index}>
+                      <p>{row[header]}</p>
+                    </td>
+                  );
+                })}
               </tr>
-            )
-          )}
+            );
+          })}
           {!invoiceData.length && (
             <tr>
               <td colSpan={4}>No invoices....</td>
