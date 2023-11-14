@@ -1,8 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with
 [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Its a reusable table component in React that gets API invoice data and builds
-the table according to the data. This is for a tech test and has taken me around
+Its a reusable table component in React that gets invoice data and builds
+the table according to the data. 
+It uses Tailwind CSS and a simple JS fetch hook to get the API data.
+This is for a tech test and has taken me around
 4 hours to complete.
 
 ## Getting Started
