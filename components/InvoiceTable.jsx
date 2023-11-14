@@ -1,4 +1,11 @@
 export default function InvoiceTable({ headers, invoiceData }) {
+  const isISODate = (val) => {
+    const iso8601Pattern =
+      /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?([+-]\d{2}:\d{2})?$/;
+    // Check if the value matches the pattern
+    return iso8601Pattern.test(val);
+  };
+
   return (
     <section className="container mx-auto my-3">
       <div>
@@ -22,6 +29,21 @@ export default function InvoiceTable({ headers, invoiceData }) {
                 <tr key={row.Id}>
                   {Object.values(headers).map((header, index) => {
                     let val = row[header];
+
+                    if (isISODate(val)) {
+                      const date = new Date(val);
+                      val =
+                        date.getDate() +
+                        "/" +
+                        (date.getMonth() + 1) +
+                        "/" +
+                        date.getFullYear();
+                    }
+
+                    if (val === true) {
+                      val = "Yes";
+                    }
+
                     return (
                       <td
                         key={index}
@@ -31,7 +53,7 @@ export default function InvoiceTable({ headers, invoiceData }) {
                         }`}
                       >
                         <p className="inline-flex items-center gap-x-3">
-                          {row[header]}
+                          {val}
                         </p>
                       </td>
                     );
