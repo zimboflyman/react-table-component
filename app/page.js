@@ -4,6 +4,7 @@ import InvoiceTable from "@/components/InvoiceTable";
 
 //Todo List with more time
 //
+// Add some RTL unit tests
 // add pagination
 // add sorting
 // small alignment issues
