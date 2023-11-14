@@ -1,4 +1,4 @@
-"use client"; // This is a client component
+"use client"; // This is a client component - allows for react hooks
 import { useState, useEffect } from "react";
 
 const API_BASE_URL = "https://tech-test.tp24.io/";

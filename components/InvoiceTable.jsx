@@ -16,7 +16,7 @@ export default function InvoiceTable({ headers, invoiceData }) {
                 <th
                   key={index}
                   scope="col"
-                  className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-400"
+                  className="py-3.5 px-3 text-sm font-normal text-left rtl:text-right text-gray-400"
                 >
                   <p className="flex items-center gap-x-3">{header}</p>
                 </th>
@@ -26,10 +26,14 @@ export default function InvoiceTable({ headers, invoiceData }) {
           <tbody className="bg-white divide-y divide-gray-700 bg-gray-900">
             {invoiceData.map((row) => {
               return (
-                <tr key={row.Id}>
+                <tr
+                  key={row.Id}
+                  className="hover:bg-gray-600 focus:bg-red-200 active:bg-red-200"
+                >
                   {Object.values(headers).map((header, index) => {
                     let val = row[header];
 
+                    // check if the val is a date and render an easier to read val
                     if (isISODate(val)) {
                       const date = new Date(val);
                       val =
@@ -48,7 +52,7 @@ export default function InvoiceTable({ headers, invoiceData }) {
                       <td
                         key={index}
                         // conditionally align text right if its a number
-                        className={`px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap ${
+                        className={`px-3 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap ${
                           typeof val === "number" ? "text-right" : ""
                         }`}
                       >
